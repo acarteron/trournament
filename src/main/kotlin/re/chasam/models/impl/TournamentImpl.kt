@@ -14,7 +14,6 @@ class TournamentImpl : Tournament, KoinComponent {
     override fun getPlayer(name: String) : Player? {
         val player = Player(name)
         val index = players.indexOf(player)
-        println("index: $index")
         if (index == -1)
             return null
         return players[index]

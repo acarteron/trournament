@@ -14,7 +14,6 @@ fun main(args: Array<String>) {
 
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
-    val port = environment?.config?.propertyOrNull("database.port")?.getString()?.toInt()
     install(Koin) {
         slf4jLogger()
         modules(tournamentModule)

@@ -7,7 +7,7 @@ import re.chasam.routes.*
 
 fun Application.configureRouting() {
     routing {
-        usersRouting()
+        playersRouting()
         get("/") {
             call.respondText("Hello World!")
         }

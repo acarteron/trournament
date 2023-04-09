@@ -10,7 +10,7 @@ class Player (var name: String = "", var score: Int = 0, var rank : Int = 0) : C
         return this.score - other.score
     }
     override fun toString(): String {
-        return "$name $score"
+        return "$name $score $rank"
     }
     override fun equals(other: Any?): Boolean {
         if (other is Player)
