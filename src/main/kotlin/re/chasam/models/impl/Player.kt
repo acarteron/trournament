@@ -1,11 +1,9 @@
-package re.chasam.models
+package re.chasam.models.impl
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Player (var name: String = "", var score: Int = 0) : Comparable<Player>{
-    var rank : Int = 0
-
+class Player (var name: String = "", var score: Int = 0, var rank : Int = 0) : Comparable<Player>{
     override fun compareTo(other: Player): Int {
         if (this.score == other.score)
             return 0
