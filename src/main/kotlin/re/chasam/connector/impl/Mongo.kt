@@ -13,7 +13,12 @@ import re.chasam.models.impl.Player
 
 
 class Mongo : Connector {
-    override val defaultDatabase = Database("mongodb","127.0.0.1", 27017, "tournament", "users")
+    override val defaultDatabase = Database(
+        System.getenv("SCHEME") ?: "mongodb",
+        System.getenv("HOST") ?: "127.0.0.0",
+        (System.getenv("PORT") ?: "27017").toInt(),
+        System.getenv("NAME") ?: "tournament",
+        System.getenv("COLLECTION") ?: "users")
 
     private var uri = "${defaultDatabase.scheme}://${defaultDatabase.host}:${defaultDatabase.port}"
     private val mongoClient: MongoClient = MongoClients.create(uri)
