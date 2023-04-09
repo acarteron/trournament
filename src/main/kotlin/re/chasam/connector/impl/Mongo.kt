@@ -15,7 +15,7 @@ import re.chasam.models.impl.Player
 class Mongo : Connector {
     override val defaultDatabase = Database(
         System.getenv("SCHEME") ?: "mongodb",
-        System.getenv("HOST") ?: "127.0.0.0",
+        System.getenv("HOST") ?: "127.0.0.1",
         (System.getenv("PORT") ?: "27017").toInt(),
         System.getenv("NAME") ?: "tournament",
         System.getenv("COLLECTION") ?: "users")
@@ -25,7 +25,7 @@ class Mongo : Connector {
     private val database: MongoDatabase = mongoClient.getDatabase(defaultDatabase.name)
     private val mCollection: MongoCollection<Document> = database.getCollection(defaultDatabase.collection)
     init {
-        println("init tournament")
+        println("init tournament $uri")
     }
     override fun insertOrUpdate(name: String, score: Int, rank : Int) {
         val query = Document().append("name", name)
