@@ -1,10 +1,8 @@
-package re.chasam.models
+package re.chasam.models.impl
 
 import org.junit.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
 
 class PlayerTest {
 
@@ -27,15 +25,10 @@ class PlayerTest {
 
     @Test
     fun testEquals() {
-
         val player1 = Player("Player1", 1)
         val player2 = Player("Player2",2)
         val player3 = Player("Player3",1)
         val player4 = Player("Player1", 2)
-
-        assertFalse(player1.equals(player2))
-        assertTrue(player1.equals(player4))
-        assertFalse(player3.equals(player1))
 
         assertNotEquals(player1, player2)
         assertEquals(player1, player4)
