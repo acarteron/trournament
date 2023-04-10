@@ -1,0 +1,29 @@
+version: '3'
+services:
+  tournament:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    networks:
+      - my-network
+    environment:
+      - SCHEME=mongodb
+      - HOST=mongodb
+      - PORT=27017
+      - NAME=tournament
+      - COLLECTION=users
+    links:
+      - mongodb
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    networks:
+      - my-network
+    expose:
+      - 27017
+
+networks:
+  my-network:
+    driver: bridge
