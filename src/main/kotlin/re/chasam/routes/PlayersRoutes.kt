@@ -33,11 +33,12 @@ fun Route.playersRouting() {
         post {
             val player = call.receive<Player>()
             println("post $player")
-            tournamentImpl.addOrUpdate(player)
+            tournamentImpl.addOrUpdate(Player(player.name))
             call.respondText("player stored correctly", status = HttpStatusCode.Created)
         }
         patch("{id?}") {
             val id = call.parameters["id"] ?: return@patch call.respondText("Bad Request", status = HttpStatusCode.BadRequest)
+            tournamentImpl.getPlayer(id) ?: return@patch call.respondText("No player found", status = HttpStatusCode.NotFound)
             val player = call.receive<Player>()
             println("post $id $player")
             tournamentImpl.addOrUpdate(id, player.score)
