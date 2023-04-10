@@ -3,14 +3,11 @@ package re.chasam.models
 import org.junit.Test
 import re.chasam.models.impl.Player
 import kotlin.test.assertEquals
-
-class Tournament4Test(override var players: MutableList<Player>) : Tournament{
-}
-
+class Tournament4Test(override var players: MutableList<Player>) : Tournament
 class TournamentTest {
     @Test
     fun getPlayer() {
-        var tournament = Tournament4Test(mutableListOf(
+        val tournament = Tournament4Test(mutableListOf(
             Player("Player 1"),
             Player("Player 2", 1, 3),
             Player("Player 3"),
@@ -31,7 +28,7 @@ class TournamentTest {
     }
     @Test
     fun updateRank() {
-        var tournament = Tournament4Test(mutableListOf(
+        val tournament = Tournament4Test(mutableListOf(
             Player("Player 1", 30),
             Player("Player 2", 10),
             Player("Player 3",20),
@@ -39,7 +36,6 @@ class TournamentTest {
             Player("Player 5", 30)))
 
         tournament.updateRank()
-        println(tournament.players)
         tournament.getPlayer("Player 1")?.let { assertEquals(2, it.rank) }
         tournament.getPlayer("Player 2")?.let { assertEquals(4, it.rank) }
         tournament.getPlayer("Player 3")?.let { assertEquals(3, it.rank) }
