@@ -1,5 +1,6 @@
 package re.chasam.connector
 
+import org.koin.core.component.KoinComponent
 import re.chasam.models.impl.Player
 
 data class Database (
@@ -10,7 +11,7 @@ data class Database (
     val collection : String,
 )
 
-interface Connector {
+interface Connector : KoinComponent {
     val defaultDatabase: Database
     fun insertOrUpdate(name: String, score: Int = 0, rank : Int = 0)
     fun dropAll()

@@ -6,12 +6,12 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-import re.chasam.models.impl.TournamentImpl
+import re.chasam.models.Tournament
 import re.chasam.models.impl.Player
 
 fun Route.playersRouting() {
 
-    val tournamentImpl by inject<TournamentImpl>()
+    val tournamentImpl by inject<Tournament>()
     route("/players") {
         get {
             if (tournamentImpl.players.isNotEmpty()) {
