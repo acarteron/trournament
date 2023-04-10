@@ -31,6 +31,7 @@ class Mongo : Connector {
         val query = Document().append("name", name)
         val updates = Updates.combine(
             Updates.set("score", score),
+            Updates.set("rank", rank),
             Updates.currentTimestamp("lastUpdated")
         )
         val options = UpdateOptions().upsert(true)
@@ -52,7 +53,6 @@ class Mongo : Connector {
     }
     override fun listAll(): List<Player> {
         try {
-
             val projectionFields = Projections.fields(
                 Projections.include("name", "score", "rank"),
                 Projections.excludeId()
@@ -62,7 +62,7 @@ class Mongo : Connector {
                 .sort(Sorts.descending("score"))
             val players = mutableListOf<Player>()
             doc.forEach { it: Document ->
-                players.add(Player(it.getString("name"), it.getInteger("score"), it.getInteger("rank")))
+                players.add(Player(it.getString("name"), it.getInteger("score"), it.getInteger("rank")?: 0))
             }
             return players
         } catch (me: MongoException) {
